@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora - KW Santa Ana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="theme-light">
+  
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <!-- LOGO OFICIAL KW SANTA ANA -->
+        <div class="kw-santa-ana-logo">
+          <span class="kw-bold-red">kw</span>
+          <span class="kw-branch-name">SANTA ANA</span>
+          <span class="kw-sub-text">KELLERWILLIAMS.</span>
+        </div>
+        <div class="brand-divider"></div>
+        <div class="brand-text">
+          <h1>CALCULADORA</h1>
+          <p>Modelo Económico MREA - Keller Williams</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="agent-profile-pill" id="agent-profile-pill">
+          <span class="agent-avatar">👤</span>
+          <div class="agent-info">
+            <span class="agent-name" id="display-agent-name">Agente KW</span>
+            <span class="agent-role" id="display-agent-role">Rol: Agente Inmobiliario</span>
+          </div>
+        </div>
+
+        <button class="btn-icon" id="theme-toggle-btn" title="Cambiar a Modo Oscuro">
+          🌙
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    
+    <nav class="stepper-nav">
+      <div class="step-item active" data-step="1">
+        <div class="step-number">1</div>
+        <div class="step-label">
+          <span class="title">Meta Neta</span>
+          <span class="subtitle">Ingreso deseado</span>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item" data-step="2">
+        <div class="step-number">2</div>
+        <div class="step-label">
+          <span class="title">Presupuesto Agente</span>
+          <span class="subtitle">Hoja Oficial KW</span>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item" data-step="3">
+        <div class="step-number">3</div>
+        <div class="step-label">
+          <span class="title">Ventas & Arriendos</span>
+          <span class="subtitle">% Mix & Comisiones</span>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item" data-step="4">
+        <div class="step-number">4</div>
+        <div class="step-label">
+          <span class="title">Embudos Duales</span>
+          <span class="subtitle">Conversiones MREA</span>
+        </div>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item" data-step="5">
+        <div class="step-number">5</div>
+        <div class="step-label">
+          <span class="title">Plan Consolidado</span>
+          <span class="subtitle">Metas & Sumatoria</span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content-layout">
+      
+      <section class="wizard-section">
+        
+        <!-- PASO 1: META NETO -->
+        <div class="wizard-step-card active" id="step-1-card">
+          <div class="card-header">
+            <span class="step-pill">Paso 1 de 5</span>
+            <h2>Define tu Meta de Ingreso Neto Líquido</h2>
+            <p>¿Cuánto dinero quieres que te quede libre en el bolsillo al mes o al año para tu estilo de vida?</p>
+          </div>
+
+          <div class="form-grid">
+            <div class="input-group highlight-group">
+              <label for="net-income-monthly">Ingreso Neto Deseado al Mes ($)</label>
+              <div class="input-wrapper">
+                <span class="currency-symbol">$</span>
+                <input type="text" id="net-income-monthly" class="currency-input mrea-editable" placeholder="$ 4.675.000">
+              </div>
+              <span class="input-hint">💡 Dinero disponible mensual libre de gastos de negocio.</span>
+            </div>
+
+            <div class="input-group">
+              <label for="net-income-yearly">Ingreso Neto Deseado al Año ($)</label>
+              <div class="input-wrapper">
+                <span class="currency-symbol">$</span>
+                <input type="text" id="net-income-yearly" class="currency-input mrea-editable" placeholder="$ 56.100.000">
+              </div>
+              <span class="input-hint">Calculado automáticamente (Mes × Meses pendientes).</span>
+            </div>
+          </div>
+
+          <div class="summary-box">
+            <div class="summary-item">
+              <span class="label">Meta Neto Mensual</span>
+              <span class="value text-emerald" id="summary-step1-monthly">$ 4.675.000</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-item">
+              <span class="label">Meta Neto Anual</span>
+              <span class="value text-emerald" id="summary-step1-yearly">$ 56.100.000</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <div></div>
+            <button class="btn btn-primary" id="btn-goto-step2">
+              Continuar al Paso 2: Presupuesto Agente KW →
+            </button>
+          </div>
+        </div>
+
+        <!-- PASO 2: PRESUPUESTO OFICIAL AGENTE KW -->
+        <div class="wizard-step-card" id="step-2-card">
+          <div class="card-header">
+            <span class="step-pill">Paso 2 de 5</span>
+            <h2>PRESUPUESTO AGENTE - KW SANTA ANA</h2>
+            <p>Modifica únicamente las celdas grises editables. Todo lo demás se calcula automáticamente.</p>
+          </div>
+
+          <!-- MESES PENDIENTES & AÑO DE ANIVERSARIO -->
+          <div class="kw-months-bar mb-4">
+            <div class="months-bar-col">
+              <span class="months-label">📅 Meses Pendientes en el Año Calendario:</span>
+              <div class="input-wrapper" style="width: 140px; margin-top: 0.25rem;">
+                <input type="number" id="months-remaining-input" min="1" max="12" value="12" class="mrea-editable" style="text-align: center; font-weight: 800; font-size: 1.2rem;">
+                <span class="unit-symbol">Meses</span>
+              </div>
+            </div>
+
+            <div class="months-bar-divider"></div>
+
+            <div class="months-bar-col">
+              <span class="months-label">🚀 Mes de Inscripción al Centro de Negocios:</span>
+              <select id="kw-entry-month-select" class="mrea-editable-select mt-1">
+                <option value="enero">Enero</option>
+                <option value="febrero">Febrero</option>
+                <option value="marzo" selected>Marzo</option>
+                <option value="abril">Abril</option>
+                <option value="mayo">Mayo</option>
+                <option value="junio">Junio</option>
+                <option value="julio">Julio</option>
+                <option value="agosto">Agosto</option>
+                <option value="septiembre">Septiembre</option>
+                <option value="octubre">Octubre</option>
+                <option value="noviembre">Noviembre</option>
+                <option value="diciembre">Diciembre</option>
+              </select>
+            </div>
+
+            <div class="anniversary-badge" id="anniversary-badge-display">
+              📅 Tu año de aniversario empieza el mes siguiente de la inscripción al Centro de Negocios (Inicia en <strong>Abril</strong>)
+            </div>
+          </div>
+
+          <!-- PESTAÑAS DEL PRESUPUESTO KW SANTA ANA -->
+          <div class="tabs-header">
+            <button class="tab-btn active" data-tab="non-negotiable">
+              🔴 Gastos NO Negociables (Piso)
+            </button>
+            <button class="tab-btn" data-tab="negotiable">
+              🟢 Gastos Negociables (Sueños)
+            </button>
+            <button class="tab-btn" data-tab="business-op">
+              💼 Gastos Operación Negocio
+            </button>
+            <button class="tab-btn" data-tab="kw-structure">
+              🏢 Costo de Ventas & Tope CAP KW
+            </button>
+          </div>
+
+          <!-- TAB 1: GASTOS NO NEGOCIABLES -->
+          <div class="tab-content active" id="tab-non-negotiable">
+            <p class="tab-description">
+              🔴 <strong>Gastos No Negociables (Tu Piso Financiero):</strong> Corresponde a lo MÍNIMO que debes estar seguro que generarás a través de tu negocio inmobiliario.
+            </p>
+            <div class="expense-table-header">
+              <span>Concepto de Gasto</span>
+              <span>Mes ($)</span>
+              <span>Año ($)</span>
+              <span></span>
+            </div>
+            <div class="expense-list" id="non-negotiable-expenses-list"></div>
+            <button class="btn btn-secondary btn-sm mt-3" id="add-non-negotiable-expense-btn">
+              ➕ Agregar Gasto NO Negociable
+            </button>
+          </div>
+
+          <!-- TAB 2: GASTOS NEGOCIABLES -->
+          <div class="tab-content" id="tab-negotiable">
+            <p class="tab-description">
+              🟢 <strong>Gastos Negociables (Tu Gran Por Qué):</strong> Gastos atados a tus sueños e inversiones. En caso de no conseguir dichos recursos, tu vida básica no colapsa.
+            </p>
+            <div class="expense-table-header">
+              <span>Concepto de Gasto</span>
+              <span>Mes ($)</span>
+              <span>Año ($)</span>
+              <span></span>
+            </div>
+            <div class="expense-list" id="negotiable-expenses-list"></div>
+            <button class="btn btn-secondary btn-sm mt-3" id="add-negotiable-expense-btn">
+              ➕ Agregar Gasto Negociable
+            </button>
+          </div>
+
+          <!-- TAB 3: GASTOS DE OPERACIÓN NEGOCIO -->
+          <div class="tab-content" id="tab-business-op">
+            <p class="tab-description">
+              💼 <strong>Gastos de Operación:</strong> Presupuesto de operación mensual y anual como agente de bienes raíces.
+            </p>
+            <div class="expense-table-header">
+              <span>Concepto de Operación</span>
+              <span>Mes ($)</span>
+              <span>Año ($)</span>
+              <span></span>
+            </div>
+            <div class="expense-list" id="business-expenses-list"></div>
+            <button class="btn btn-secondary btn-sm mt-3" id="add-business-expense-btn">
+              ➕ Agregar Gasto de Operación
+            </button>
+          </div>
+
+          <!-- TAB 4: COSTO DE VENTAS & TOPE CAP KW SANTA ANA -->
+          <div class="tab-content" id="tab-kw-structure">
+            <p class="tab-description">
+              🏢 <strong>Costo de Ventas & Tope MÁXIMO de CAP (KW Santa Ana):</strong> Al completar el monto del CAP ($ 28.000.000), solo dejas de pagar al Centro de Negocios (30%). <strong>Sigues pagando Regalías KW (8%) y Árbol de Crecimiento (2%)</strong> el resto de tu año de aniversario.
+            </p>
+            
+            <div class="kw-structure-grid mb-4">
+              
+              <!-- CONFIGURACIÓN TOPE CAP MÁXIMO -->
+              <div class="input-group highlight-group" style="max-width: 480px;">
+                <label for="kw-max-cap-input">🏆 Tope Máximo Anual Aporte Centro de Negocios (CAP) ($)</label>
+                <div class="input-wrapper">
+                  <span class="currency-symbol">$</span>
+                  <input type="text" id="kw-max-cap-input" class="currency-input mrea-editable" value="$ 28.000.000">
+                </div>
+                <span class="input-hint">💡 Por defecto <strong>$ 28.000.000 / año</strong> (Editable para miembros de equipo con CAP menor, ej: $ 14.000.000 o $ 20.000.000).</span>
+              </div>
+
+              <div class="kw-struct-row mt-2">
+                <span>Aporte Centro de Negocios (30%)</span>
+                <span class="badge badge-sales">Hasta el tope máximo de CAP ($ 28.000.000)</span>
+              </div>
+              <div class="kw-struct-row">
+                <span>Regalías KW (8%)</span>
+                <span class="badge badge-rentals">Se sigue pagando siempre en todo negocio</span>
+              </div>
+              <div class="kw-struct-row">
+                <span>Árbol de Crecimiento (2%)</span>
+                <span class="badge badge-rentals">Se sigue pagando siempre en todo negocio</span>
+              </div>
+              <div class="kw-struct-row highlight-struct">
+                <strong>Costo de Ventas Inicial Total</strong>
+                <strong class="text-kw">40% (30% CAP + 8% Regalías + 2% Árbol)</strong>
+              </div>
+            </div>
+
+            <div class="input-group mt-3" style="max-width: 450px;">
+              <label for="business-taxes-input">Impuestos Negocio (Retefuente / IVA / Renta) (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="business-taxes-input" min="0" max="50" value="11" class="mrea-editable">
+                <span class="unit-symbol">%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RESUMEN DE TOTALES ESTILO KW SANTA ANA -->
+          <div class="budget-totals-grid">
+            <div class="total-card non-negotiable-card">
+              <span class="card-title">🔴 Total No Negociables</span>
+              <span class="card-amount text-kw" id="total-non-negotiable-val">$ 2.950.000 / mes</span>
+              <span class="card-sub" id="total-non-negotiable-yearly-val">$ 35.400.000 / año</span>
+            </div>
+
+            <div class="total-card negotiable-card">
+              <span class="card-title">🟢 Total Negociables</span>
+              <span class="card-amount text-emerald" id="total-negotiable-val">$ 1.725.000 / mes</span>
+              <span class="card-sub" id="total-negotiable-yearly-val">$ 20.700.000 / año</span>
+            </div>
+
+            <div class="total-card">
+              <span class="card-title">💼 Total Gastos Operación</span>
+              <span class="card-amount text-blue" id="total-business-val">$ 743.750 / mes</span>
+              <span class="card-sub" id="total-business-yearly-val">$ 8.925.000 / año</span>
+            </div>
+
+            <div class="total-card highlight-card">
+              <span class="card-title">TOTAL PRESUPUESTO PERSONAL</span>
+              <span class="card-amount text-kw" id="total-personal-budget-val">$ 4.675.000 / mes</span>
+              <span class="card-sub" id="total-personal-budget-yearly-val">$ 56.100.000 / año</span>
+            </div>
+          </div>
+
+          <div class="floor-banner-card mt-3">
+            <div class="floor-header">
+              <span class="shield-icon">🛡️</span>
+              <div>
+                <h4>PISO MÍNIMO INMOBILIARIO REQUERIDO</h4>
+                <p>GCI mínimo para cubrir sólo tus No Negociables ($ 2.950.000/mes) + Operación + Impuestos.</p>
+              </div>
+            </div>
+            <div class="floor-amount" id="floor-gci-display">
+              $ 4.150.281 / mes ($ 49.803.371 / año)
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <button class="btn btn-secondary" id="btn-backto-step1">← Volver al Paso 1</button>
+            <button class="btn btn-primary" id="btn-goto-step3">Continuar al Paso 3: Ventas & Arriendos →</button>
+          </div>
+        </div>
+
+        <!-- PASO 3: MEZCLA Y COMISIONES -->
+        <div class="wizard-step-card" id="step-3-card">
+          <div class="card-header">
+            <span class="step-pill">Paso 3 de 5</span>
+            <h2>Estructura de Comisiones, Split y Mezcla de Negocios</h2>
+            <p>Configura tu Split único con la oficina KW y ajusta la proporción de **Ventas** vs **Arriendos**.</p>
+          </div>
+
+          <div class="global-kw-box mb-4">
+            <div class="form-grid compact-grid">
+              <div class="input-group">
+                <label for="global-agent-split">Split para el Agente (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="global-agent-split" value="70" class="mrea-editable">
+                  <span class="unit-symbol">%</span>
+                </div>
+                <span class="input-hint">Porcentaje único retenido por el agente (Ej: 70% Agente / 30% Oficina KW).</span>
+              </div>
+
+              <div class="input-group">
+                <label for="work-weeks-input">Semanas Trabajadas al Año</label>
+                <div class="input-wrapper">
+                  <input type="number" id="work-weeks-input" value="48" class="mrea-editable">
+                  <span class="unit-symbol">Semanas</span>
+                </div>
+                <span class="input-hint">52 semanas menos tus semanas de vacaciones.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mix-selector-box mb-4">
+            <div class="mix-header">
+              <h3>📊 Mezcla de Negocios (% Mix de Facturación)</h3>
+            </div>
+            
+            <div class="range-wrapper mt-3">
+              <input type="range" id="mix-range-input" min="0" max="100" value="70" class="mix-slider">
+            </div>
+
+            <div class="mix-badges-container mt-3">
+              <span class="badge badge-sales" id="sales-mix-badge">🏷️ Ventas: 70%</span>
+              <span class="badge badge-rentals" id="rentals-mix-badge">🔑 Arriendos: 30%</span>
+            </div>
+
+            <div class="mix-labels mt-2">
+              <span>0% Ventas (100% Arriendos)</span>
+              <span>100% Ventas (0% Arriendos)</span>
+            </div>
+          </div>
+
+          <div class="dual-config-grid">
+            
+            <div class="config-card sales-border">
+              <div class="card-title-row">
+                <span class="icon">🏷️</span>
+                <h3>Negocios de Venta</h3>
+              </div>
+              <div class="form-grid compact-grid">
+                <div class="input-group">
+                  <label for="sales-avg-price">Ticket Medio de Venta ($)</label>
+                  <div class="input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="text" id="sales-avg-price" class="currency-input mrea-editable">
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label for="sales-comm-percent">Comisión de Venta (%)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="sales-comm-percent" step="0.5" value="3" class="mrea-editable">
+                    <span class="unit-symbol">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="config-card rentals-border">
+              <div class="card-title-row">
+                <span class="icon">🔑</span>
+                <h3>Negocios de Arriendo</h3>
+              </div>
+              <div class="form-grid compact-grid">
+                <div class="input-group">
+                  <label for="rentals-avg-price">Canon Mensual Promedio ($)</label>
+                  <div class="input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="text" id="rentals-avg-price" class="currency-input mrea-editable">
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label for="rentals-comm-months">Comisión por Arriendo (Meses)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="rentals-comm-months" step="0.5" value="1" class="mrea-editable">
+                    <span class="unit-symbol">Meses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+            <button class="btn btn-secondary" id="btn-backto-step2">← Volver al Paso 2</button>
+            <button class="btn btn-primary" id="btn-goto-step4">Continuar al Paso 4: Embudos Duales →</button>
+          </div>
+        </div>
+
+        <!-- PASO 4: EMBUDOS DE CONVERSIÓN -->
+        <div class="wizard-step-card" id="step-4-card">
+          <div class="card-header">
+            <span class="step-pill">Paso 4 de 5</span>
+            <h2>Embudos de Conversión Diferenciados</h2>
+            <p>Configura las tasas de efectividad MREA por separado para **Ventas** y para **Arriendos**.</p>
+          </div>
+
+          <div class="dual-config-grid">
+            
+            <div class="config-card sales-border">
+              <div class="card-title-row">
+                <span class="icon">🏷️</span>
+                <h3>Embudo de Conversión de VENTAS</h3>
+              </div>
+              <div class="form-grid compact-grid funnel-grid">
+                <div class="input-group">
+                  <label for="sales-ratio-contacts">📞 Contactos para 1 Cita de Venta</label>
+                  <input type="number" id="sales-ratio-contacts" value="20" class="funnel-input sales-funnel-input mrea-editable">
+                </div>
+                <div class="input-group">
+                  <label for="sales-ratio-appointments">📅 Citas para 1 Captación de Venta</label>
+                  <input type="number" id="sales-ratio-appointments" value="3" class="funnel-input sales-funnel-input mrea-editable">
+                </div>
+                <div class="input-group">
+                  <label for="sales-ratio-listings">🏡 Captaciones para 1 Venta Cerrada</label>
+                  <input type="number" id="sales-ratio-listings" value="2" class="funnel-input sales-funnel-input mrea-editable">
+                </div>
+              </div>
+            </div>
+
+            <div class="config-card rentals-border">
+              <div class="card-title-row">
+                <span class="icon">🔑</span>
+                <h3>Embudo de Conversión de ARRIENDOS</h3>
+              </div>
+              <div class="form-grid compact-grid funnel-grid">
+                <div class="input-group">
+                  <label for="rentals-ratio-contacts">📞 Contactos para 1 Cita de Arriendo</label>
+                  <input type="number" id="rentals-ratio-contacts" value="10" class="funnel-input rentals-funnel-input mrea-editable">
+                </div>
+                <div class="input-group">
+                  <label for="rentals-ratio-appointments">📅 Citas para 1 Captación de Arriendo</label>
+                  <input type="number" id="rentals-ratio-appointments" value="2" class="funnel-input rentals-funnel-input mrea-editable">
+                </div>
+                <div class="input-group">
+                  <label for="rentals-ratio-listings">🏡 Captaciones para 1 Arriendo Cerrado</label>
+                  <input type="number" id="rentals-ratio-listings" value="1.5" step="0.1" class="funnel-input rentals-funnel-input mrea-editable">
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+            <button class="btn btn-secondary" id="btn-backto-step3">← Volver al Paso 3</button>
+            <button class="btn btn-primary" id="btn-goto-step5">Ver Plan Consolidado Final →</button>
+          </div>
+        </div>
+
+        <!-- PASO 5: PLAN CONSOLIDADO -->
+        <div class="wizard-step-card" id="step-5-card">
+          <div class="card-header">
+            <span class="step-pill">Paso 5 de 5</span>
+            <h2>Plan de Acción Segmentado y Sumatoria Consolidada</h2>
+            <p>Tus metas desglosadas por tipo de negocio (Ventas vs Arriendos) y la sumatoria total de actividad semanal.</p>
+          </div>
+
+          <div id="final-results-container"></div>
+
+          <div class="card-actions mt-4">
+            <button class="btn btn-secondary" id="btn-backto-step4">← Ajustar Parámetros</button>
+            <button class="btn btn-primary" id="btn-print-report">🖨️ Imprimir / Guardar Reporte PDF</button>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
