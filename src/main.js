@@ -173,18 +173,27 @@ function initStep2Budget() {
   }
 
   document.getElementById('add-non-negotiable-expense-btn')?.addEventListener('click', () => {
-    agentStore.addCustomExpense('non_negotiable', 'Nuevo Gasto No Negociable', 0);
-    renderStep2Budget();
+    const conceptName = prompt('Ingresa el concepto del nuevo gasto NO negociable:');
+    if (conceptName && conceptName.trim()) {
+      agentStore.addCustomExpense('non_negotiable', conceptName.trim(), 0);
+      renderStep2Budget();
+    }
   });
 
   document.getElementById('add-negotiable-expense-btn')?.addEventListener('click', () => {
-    agentStore.addCustomExpense('negotiable', 'Nuevo Gasto Negociable', 0);
-    renderStep2Budget();
+    const conceptName = prompt('Ingresa el concepto del nuevo gasto negociable (sueño):');
+    if (conceptName && conceptName.trim()) {
+      agentStore.addCustomExpense('negotiable', conceptName.trim(), 0);
+      renderStep2Budget();
+    }
   });
 
   document.getElementById('add-business-expense-btn')?.addEventListener('click', () => {
-    agentStore.addCustomExpense('business', 'Nuevo Gasto de Operación', 0);
-    renderStep2Budget();
+    const conceptName = prompt('Ingresa el concepto del nuevo gasto de operación:');
+    if (conceptName && conceptName.trim()) {
+      agentStore.addCustomExpense('business', conceptName.trim(), 0);
+      renderStep2Budget();
+    }
   });
 
   renderStep2Budget();
@@ -236,7 +245,7 @@ function createExpenseRow(category, item) {
   const row = document.createElement('div');
   row.className = 'expense-row';
   row.innerHTML = `
-    <input type="text" class="expense-name" value="${item.name}" placeholder="Nombre del gasto">
+    <input type="text" class="expense-name" value="${item.name}" readonly tabindex="-1" style="outline: none; pointer-events: none; opacity: 0.95;">
     <div class="input-wrapper">
       <span class="currency-symbol">$</span>
       <input type="text" class="currency-input expense-amount mrea-editable" value="${formatCOP(item.monthly)}">
@@ -244,11 +253,6 @@ function createExpenseRow(category, item) {
     <span class="yearly-calculated-val">${formatCOP(yearlyVal)}</span>
     <button class="btn-delete" title="Eliminar gasto">🗑️</button>
   `;
-
-  row.querySelector('.expense-name').addEventListener('change', (e) => {
-    item.name = e.target.value;
-    agentStore.saveToStorage();
-  });
 
   setupCurrencyInput(row.querySelector('.expense-amount'), (val) => {
     agentStore.updateExpense(category, item.id, val);

@@ -6,7 +6,7 @@
  * 2. Plan Completo de Sueños (No Negociables + Negociables + Operación + Impuestos + Costo Ventas)
  */
 
-const STORAGE_KEY = 'kw_agente_modelo_economico_v10';
+const STORAGE_KEY = 'kw_agente_modelo_economico_v12';
 
 const defaultState = {
   agentId: 'agente-demo-01',
@@ -92,12 +92,12 @@ const defaultState = {
   },
 
   salesMetrics: {
-    averagePropertyPrice: 350000000,
-    commissionPercent: 3
+    averagePropertyPrice: 803760142,
+    commissionPercent: 2.68
   },
 
   rentalMetrics: {
-    averageMonthlyRent: 2500000,
+    averageMonthlyRent: 5000000,
     commissionType: 'months',
     commissionMonths: 1,
     commissionPercent: 8
@@ -324,8 +324,8 @@ class AgentStore {
       const gciSales = gciNeeded * ((businessMix.salesPercent || 0) / 100);
       const gciRentals = gciNeeded * ((businessMix.rentalsPercent || 0) / 100);
 
-      // Ventas
-      const sDealsYearly = netCommSalesPerDealToAgent > 0 ? (gciSales / netCommSalesPerDealToAgent) : 0;
+      // Ventas (GCI Ventas / GCI Bruto por Venta)
+      const sDealsYearly = grossCommSalesPerDeal > 0 ? (gciSales / grossCommSalesPerDeal) : 0;
       const sDealsMonthly = sDealsYearly / months;
       const sListingsYearly = sDealsYearly * (salesRatios.listingToClosing || 1);
       const sListingsMonthly = sListingsYearly / months;
@@ -334,8 +334,8 @@ class AgentStore {
       const sContactsYearly = sApptsYearly * (salesRatios.contactsToAppointment || 1);
       const sContactsWeekly = sContactsYearly / weeks;
 
-      // Arriendos
-      const rDealsYearly = netCommRentalPerDealToAgent > 0 ? (gciRentals / netCommRentalPerDealToAgent) : 0;
+      // Arriendos (GCI Arriendos / GCI Bruto por Arriendo)
+      const rDealsYearly = grossCommRentalPerDeal > 0 ? (gciRentals / grossCommRentalPerDeal) : 0;
       const rDealsMonthly = rDealsYearly / months;
       const rListingsYearly = rDealsYearly * (rentalRatios.listingToClosing || 1);
       const rListingsMonthly = rListingsYearly / months;
