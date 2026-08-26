@@ -438,7 +438,6 @@ function renderStep5Results() {
 
   if (!container) return;
 
-  const floor = calc.floorPlan;
   const full = calc.fullPlan;
   const maxCap = formatCOP(calc.maxMarketCenterCap);
 
@@ -447,99 +446,51 @@ function renderStep5Results() {
     <div class="mrea-info-banner mb-4">
       <div class="info-icon">📊</div>
       <div class="info-text">
-        <strong>Comparativo de Planes MREA:</strong> A continuación se muestran los <strong>2 Planes de Acción Consolidados</strong>: El <strong>Plan de Piso Mínimo</strong> (supervivencia básica) y el <strong>Plan Completo de Sueños</strong> (metas personales + negocio + costos).
+        <strong>Plan Consolidado MREA:</strong> A continuación se muestra el <strong>Plan Completo de Sueños & Metas</strong> (Gastos No Negociables + Negociables + Operación + Impuestos + Costos de Ventas).
       </div>
     </div>
 
-    <!-- COMPARATIVO DE PLAN A VS PLAN B -->
-    <div class="dual-config-grid mb-4">
-      
-      <!-- PLAN A: PISO MÍNIMO DE SUPERVIVENCIA -->
-      <div class="config-card sales-border" style="border-left-width: 6px;">
-        <div class="card-title-row">
-          <span class="icon">🛡️</span>
-          <div>
-            <h3 class="text-kw">PLAN A: PISO MÍNIMO DE SUPERVIVENCIA</h3>
-            <p style="font-size: 0.8125rem; color: var(--text-muted);">Solo Gastos No Negociables + Gastos Operación + Impuestos + Costos Ventas</p>
-          </div>
-        </div>
-
-        <div class="budget-totals-grid" style="grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0;">
-          <div class="total-card highlight-card">
-            <span class="card-title">GCI Requerido (Piso Mínimo)</span>
-            <span class="card-amount text-kw">${formatCOP(floor.gciNeededMonthly)} / mes</span>
-            <span class="card-sub">${formatCOP(floor.gciNeededYearly)} / año</span>
-          </div>
-
-          <div class="total-card">
-            <span class="card-title">Cierres Totales Requeridos</span>
-            <span class="card-amount text-main">${floor.totalDealsYearly} cierres / año</span>
-            <span class="card-sub">(${floor.salesDealsYearly} Ventas + ${floor.rentalDealsYearly} Arriendos)</span>
-          </div>
-
-          <div class="total-card">
-            <span class="card-title">Captaciones / Exclusivas Requeridas</span>
-            <span class="card-amount text-amber">${floor.totalListingsYearly} captaciones / año</span>
-            <span class="card-sub">~ ${floor.totalListingsMonthly} captaciones al mes</span>
-          </div>
-
-          <div class="total-card">
-            <span class="card-title">CITAS SEMANALES MÍNIMAS</span>
-            <span class="card-amount text-blue">${floor.totalAppointmentsWeekly} citas / semana</span>
-            <span class="card-sub">(${floor.salesAppointmentsWeekly} Ventas + ${floor.rentalAppointmentsWeekly} Arriendos)</span>
-          </div>
-
-          <div class="total-card">
-            <span class="card-title">LLAMADAS / CONTACTOS SEMANALES MÍNIMOS</span>
-            <span class="card-amount text-emerald">${floor.totalContactsWeekly} llamadas / semana</span>
-            <span class="card-sub">(${floor.salesContactsWeekly} Ventas + ${floor.rentalContactsWeekly} Arriendos)</span>
-          </div>
+    <!-- PLAN COMPLETO DE SUEÑOS & METAS -->
+    <div class="config-card rentals-border mb-4" style="border-left-width: 6px; border-left-color: var(--emerald);">
+      <div class="card-title-row">
+        <span class="icon">🚀</span>
+        <div>
+          <h3 class="text-emerald">PLAN COMPLETO DE SUEÑOS & METAS</h3>
+          <p style="font-size: 0.875rem; color: var(--text-muted);">Gastos No Negociables + Negociables (Sueños) + Operación + Impuestos + Costos Ventas</p>
         </div>
       </div>
 
-      <!-- PLAN B: PLAN COMPLETO DE SUEÑOS & METAS -->
-      <div class="config-card rentals-border" style="border-left-width: 6px; border-left-color: var(--emerald);">
-        <div class="card-title-row">
-          <span class="icon">🚀</span>
-          <div>
-            <h3 class="text-emerald">PLAN B: PLAN COMPLETO DE SUEÑOS & METAS</h3>
-            <p style="font-size: 0.8125rem; color: var(--text-muted);">Gastos No Negociables + Negociables (Sueños) + Operación + Impuestos + Costos Ventas</p>
-          </div>
+      <div class="budget-totals-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1rem 0;">
+        <div class="total-card" style="background: rgba(5, 150, 105, 0.1); border-color: rgba(5, 150, 105, 0.3);">
+          <span class="card-title">GCI Requerido (Plan Completo)</span>
+          <span class="card-amount text-emerald">${formatCOP(full.gciNeededMonthly)} / mes</span>
+          <span class="card-sub">${formatCOP(full.gciNeededYearly)} / año</span>
         </div>
 
-        <div class="budget-totals-grid" style="grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0;">
-          <div class="total-card" style="background: rgba(5, 150, 105, 0.1); border-color: rgba(5, 150, 105, 0.3);">
-            <span class="card-title">GCI Requerido (Plan Completo)</span>
-            <span class="card-amount text-emerald">${formatCOP(full.gciNeededMonthly)} / mes</span>
-            <span class="card-sub">${formatCOP(full.gciNeededYearly)} / año</span>
-          </div>
+        <div class="total-card">
+          <span class="card-title">Cierres Totales Requeridos</span>
+          <span class="card-amount text-main">${full.totalDealsYearly} cierres / año</span>
+          <span class="card-sub">(${full.salesDealsYearly} Ventas + ${full.rentalDealsYearly} Arriendos)</span>
+        </div>
 
-          <div class="total-card">
-            <span class="card-title">Cierres Totales Requeridos</span>
-            <span class="card-amount text-main">${full.totalDealsYearly} cierres / año</span>
-            <span class="card-sub">(${full.salesDealsYearly} Ventas + ${full.rentalDealsYearly} Arriendos)</span>
-          </div>
+        <div class="total-card">
+          <span class="card-title">Captaciones / Exclusivas Requeridas</span>
+          <span class="card-amount text-amber">${full.totalListingsYearly} captaciones / año</span>
+          <span class="card-sub">~ ${full.totalListingsMonthly} captaciones al mes</span>
+        </div>
 
-          <div class="total-card">
-            <span class="card-title">Captaciones / Exclusivas Requeridas</span>
-            <span class="card-amount text-amber">${full.totalListingsYearly} captaciones / año</span>
-            <span class="card-sub">~ ${full.totalListingsMonthly} captaciones al mes</span>
-          </div>
+        <div class="total-card">
+          <span class="card-title">CITAS SEMANALES REQUERIDAS</span>
+          <span class="card-amount text-blue">${full.totalAppointmentsWeekly} citas / semana</span>
+          <span class="card-sub">(${full.salesAppointmentsWeekly} Ventas + ${full.rentalAppointmentsWeekly} Arriendos)</span>
+        </div>
 
-          <div class="total-card">
-            <span class="card-title">CITAS SEMANALES REQUERIDAS</span>
-            <span class="card-amount text-blue">${full.totalAppointmentsWeekly} citas / semana</span>
-            <span class="card-sub">(${full.salesAppointmentsWeekly} Ventas + ${full.rentalAppointmentsWeekly} Arriendos)</span>
-          </div>
-
-          <div class="total-card">
-            <span class="card-title">LLAMADAS / CONTACTOS SEMANALES REQUERIDOS</span>
-            <span class="card-amount text-emerald">${full.totalContactsWeekly} llamadas / semana</span>
-            <span class="card-sub">(${full.salesContactsWeekly} Ventas + ${full.rentalContactsWeekly} Arriendos)</span>
-          </div>
+        <div class="total-card">
+          <span class="card-title">LLAMADAS / CONTACTOS SEMANALES REQUERIDOS</span>
+          <span class="card-amount text-emerald">${full.totalContactsWeekly} llamadas / semana</span>
+          <span class="card-sub">(${full.salesContactsWeekly} Ventas + ${full.rentalContactsWeekly} Arriendos)</span>
         </div>
       </div>
-
     </div>
 
     <!-- DESGLOSE DETALLADO DE ACTIVIDAD DEL PLAN COMPLETO -->
